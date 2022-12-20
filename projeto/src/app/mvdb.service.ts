@@ -1,9 +1,9 @@
-import { api_key } from './../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient } from '@angular/common/http';
-import { API_PATH } from 'src/environments/environment';
-import { ObterGenero, obterNome, obterGeneroId, obterFilmeAtor } from './IMVDB';
 import { Observable } from 'rxjs';
+import { API_PATH, api_key } from 'src/environments/environment';
+import { obterNome, ObterGenero, obterGeneroId, obterFilmeAtor } from './IMVDB';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +17,7 @@ export class MVDBService {
   }
 
   ObterfilmesPorNome(NOME: String):Observable<any>{
-    return this.httpclient.get<ObterGenero[]>(`${API_PATH}search/movie?api_key=${api_key}language=pt-BR&query=${NOME}&page=1&include_adult=false`)
+    return this.httpclient.get<ObterGenero[]>(`${API_PATH}search/movie?api_key=${api_key}&language=pt-BR&query=${NOME}&page=1&include_adult=false`)
     }
   obterGeneroId(ID: number):Observable<any>{
     return this.httpclient.get<obterGeneroId[]>(`${API_PATH}discover/movie?api_key=${api_key}&language=pt-BR&with_genres=${ID}`)

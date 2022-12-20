@@ -1,3 +1,6 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './home/home.module';
+import { MVDBService } from './mvdb.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,9 +17,13 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MVDBService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
