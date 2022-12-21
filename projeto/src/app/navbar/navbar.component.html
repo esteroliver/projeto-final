@@ -1,44 +1,135 @@
 <nav class="navbar bg-info navbar-expand-lg navbar-light">
-  <a href="#" class="navbar-brand text-light ">
-        <img src="assets\Navbar\cnm_04-PhotoRoom.png-PhotoRoom.png" alt="logo" width="80" height="80" class="d-inline-block">
-        CineTrip
-  </a>
+  <div class="container-fluid">
+    <a class="navbar-brand text-light">
+      <!-- ! COLOQUE WIDTH E HEIGHT NO ESTILO COMO CLASSE -->
+      <img
+        src="assets\Navbar\cnm_04-PhotoRoom.png-PhotoRoom.png"
+        alt="logo"
+        width="80"
+        height="80"
+        class="d-inline-block"
+      />
+      CineTrip
+    </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-  </button>
-    
-  <div class="collapse navbar-collapse d-flex justify-content-between container-fluid" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sobre</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categorias
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Ação</a>
-          <a class="dropdown-item" href="#">Terror</a>
-          <a class="dropdown-item" href="#">Comédia</a>
-          <a class="dropdown-item" href="#">Romance</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="collapse navbar-collapse d-flex justify-content-between container-fluid"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="\mainpage">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="\sobre">Sobre</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Categorias
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item"
+            [routerLink]=""
+            [queryParams]="">Ação</a>
+            <a class="dropdown-item">Terror</a>
+            <a class="dropdown-item">Comédia</a>
+            <a class="dropdown-item">Romance</a>
+          </div>
+        </li>
+      </ul>
+      <div class="form-inline d-flex my-2 my-lg-0" role="search">
+        <div class="mb-2 input-group container-fluid" >
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Digite aqui"
+            aria-label="Search"
+            aria-label="Text input with dropdown button"
+            [(ngModel)]="pesquisa"
+          />
+          <button
+            class="btn btn-outline-secondary dropdown-toggle btn-light"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Buscar por...
+          </button>
+          <!-- TODO: Ajeitar espaçamento do dropdown-->
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li>
+              <input
+                class="form-check-input dropdown-item btn-check"
+                type="radio"
+                name="tipoPesquisa"
+                id="atoresRadio"
+                [(ngModel)]="tipoPesquisa"
+                value="ator"
+              /><label
+                class="form-check-label btn"
+                for="atoresRadio"
+                >Atores</label
+              >
+            </li>
+            <li>
+              <input
+                class="form-check-input dropdown-item btn-check"
+                type="radio"
+                name="tipoPesquisa"
+                id="filmesRadio"
+                [(ngModel)]="tipoPesquisa"
+                value="filme"
+                autocomplete="off"
+              /><label
+                class="form-check-label btn"
+                for="filmesRadio"
+                >Filmes</label
+              >
+            </li>
+            <li>
+              <input
+                class="form-check-input dropdown-item btn-check"
+                type="radio"
+                name="tipoPesquisa"
+                id="seriesRadio"
+                [(ngModel)]="tipoPesquisa"
+                value="serie"
+                autocomplete="off"
+              /><label
+                class="form-check-label btn"
+                for="seriesRadio"
+                >Séries</label
+              >
+            </li>
+          </ul>
         </div>
-      </li>
-    </ul>
-    <form class="form-inline d-flex my-2 my-lg-0" role="search">
-      <div class="mb-2 input-group">
-        <input class="form-control mr-sm-2" type="search" placeholder="Digite aqui" aria-label="Search"aria-label="Text input with dropdown button">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button"data-bs-toggle="dropdown" aria-expanded="false">Buscar por...</button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Atores</a></li>
-          <li><a class="dropdown-item" href="#">Filmes</a></li>
-          <li><a class="dropdown-item" href="#">Séries</a></li>
-        </ul>
+        <button
+          class="btn btn-outline-light btn-success my-2 my-lg-0 ml-4"
+          type="button"
+          (click)="pesquisar()"
+        >
+          Buscar
+        </button>
       </div>
-      <button class="btn btn-outline-success my-2 my-lg-0 ml-4" type="submit">Buscar</button>
-    </form>
+    </div>
   </div>
 </nav>

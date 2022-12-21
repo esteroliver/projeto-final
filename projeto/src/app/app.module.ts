@@ -1,4 +1,5 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
 import { MVDBService } from './mvdb.service';
 import { NgModule } from '@angular/core';
@@ -9,17 +10,26 @@ import { AppComponent } from './app.component';
 import { SobreComponent } from './home/sobre/sobre.component';
 import { HomepageComponent } from './home/homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FilmesComponent } from './filmes/filmes.component';
+import { CartazComponent } from './cartaz/cartaz.component';
+import { FormsModule } from '@angular/forms';
+import { AtorComponent } from './ator/ator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    FilmesComponent,
+    CartazComponent,
+    AtorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    FormsModule
   ],
   providers: [
     MVDBService

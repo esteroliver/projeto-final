@@ -1,12 +1,10 @@
 export class obterNome {
-    total_results: number = 0
-    total_pages: number = 0
-    results: object =[]
-    
-    
+title: string = ''
+overview: string = ''
+release_date: string = ''
+img: string = ''
 
 }
-
 export class ObterGenero {
 
 }

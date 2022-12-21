@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   
   FilmesPorNomes: obterNome[];
   obtergeneros: obterGeneroId[];
-  FilmeAtor: obterFilmeAtor[]
+  FilmeAtor: obterFilmeAtor[];
 
 
   constructor(private mvdbservice: MVDBService){
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   
   
   obterTodossgeneros(){
-    this.mvdbservice.ObterGenero()
+    this.mvdbservice.obterGenero()
     .then(mvdb => console.log(mvdb) )
     .catch(error => console.error(error));
 
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   }
   
   ObterGeneroPorID(ID: number){
-    this.mvdbservice.obterGeneroId(ID).subscribe(res =>{
+    this.mvdbservice.obterFilmePorGenero(ID).subscribe(res =>{
       this.obtergeneros = res.results
       console.log(this.obtergeneros)
     
@@ -46,13 +46,17 @@ export class AppComponent implements OnInit {
   ObterfilmesPorNome(nome: string){
     this.mvdbservice.ObterfilmesPorNome(nome).subscribe(res =>{
       this.FilmesPorNomes = res.results
-      console.log(this.FilmesPorNomes)
+      
     })
 
     let filtrarfilmes = this.FilmesPorNomes.filter((valorAtual) => {
-      console.log('chamei', valorAtual)
+      var release = valorAtual.release_date
+      var nome = valorAtual.title
+      var linkimagem = valorAtual.img
+      var resumo = valorAtual.overview
+
+      console.log(resumo)
     })
-    
   }
   
   obterFilmeAtor(ator: string){
