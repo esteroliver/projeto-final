@@ -1,1 +1,14 @@
-<p>filmes works!</p>
+<div [ngSwitch]="tipoPesquisa">
+<ng-container  *ngSwitchCase="'filme'">
+<div *ngFor="let filme of listaFilmes">
+    <app-cartaz [filme]="filme"></app-cartaz>
+</div>
+</ng-container>
+<ng-container *ngSwitchCase="'serie'">
+<div *ngFor="let serie of listaFilmes">
+    <app-cartaz-serie [serie]="serie"></app-cartaz-serie>
+
+</div>
+</ng-container>
+<button (click)="descerPag()" >Descer Pag</button>
+<button (click)="subirPag()" >Subir Pag</button>

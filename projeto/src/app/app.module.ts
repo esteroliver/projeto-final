@@ -14,6 +14,8 @@ import { FilmesComponent } from './filmes/filmes.component';
 import { CartazComponent } from './cartaz/cartaz.component';
 import { FormsModule } from '@angular/forms';
 import { AtorComponent } from './ator/ator.component';
+import { CartazSerieComponent } from './cartaz-serie/cartaz-serie.component';
+import { CartazAtorComponent } from './cartaz-ator/cartaz-ator.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AtorComponent } from './ator/ator.component';
     NavbarComponent,
     FilmesComponent,
     CartazComponent,
-    AtorComponent
+    AtorComponent,
+    CartazSerieComponent,
+    CartazAtorComponent
   ],
   imports: [
     BrowserModule,

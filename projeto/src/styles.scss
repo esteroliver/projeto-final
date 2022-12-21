@@ -10,9 +10,9 @@ $branco: #F3EFE0;
 
 $info: $turquesa;
 $light: $branco;
+$dark: $cinza-escuro;
 
 .navbar-brand{
     font-family: $fonte-destaque;
 }
-
 @import '~bootstrap/scss/bootstrap.scss';

@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { obterNome, obterGeneroId, obterFilmeAtor } from './IMVDB';
+import { obterNome, obterGeneroId, obterFilmeAtor, obterSerie } from './IMVDB';
 import { MVDBService } from './mvdb.service';
 
 
@@ -13,12 +13,14 @@ export class AppComponent implements OnInit {
   title = 'Projeto';
   
   FilmesPorNomes: obterNome[];
+  SeriesPorNomes: obterSerie[];
   obtergeneros: obterGeneroId[];
   FilmeAtor: obterFilmeAtor[];
 
 
   constructor(private mvdbservice: MVDBService){
     this.FilmesPorNomes = []
+    this.SeriesPorNomes = []
     this.obtergeneros = []
     this.FilmeAtor = []
     
@@ -27,7 +29,7 @@ export class AppComponent implements OnInit {
   
   
   
-  obterTodossgeneros(){
+  /* obterTodossgeneros(){
     this.mvdbservice.obterGenero()
     .then(mvdb => console.log(mvdb) )
     .catch(error => console.error(error));
@@ -35,37 +37,40 @@ export class AppComponent implements OnInit {
       
   }
   
-  ObterGeneroPorID(ID: number){
-    this.mvdbservice.obterFilmePorGenero(ID).subscribe(res =>{
+    ObterGeneroPorID(ID: number, pagenum: number){
+    this.mvdbservice.obterFilmePorGenero(ID, pagenum).subscribe(res =>{
       this.obtergeneros = res.results
       console.log(this.obtergeneros)
-    
     })
   }
 
-  ObterfilmesPorNome(nome: string){
-    this.mvdbservice.ObterfilmesPorNome(nome).subscribe(res =>{
+  ObterfilmesPorNome(nome: string, pagenum: number){
+    this.mvdbservice.ObterfilmesPorNome(nome, pagenum).subscribe(res =>{
       this.FilmesPorNomes = res.results
-      
-    })
-
-    let filtrarfilmes = this.FilmesPorNomes.filter((valorAtual) => {
-      var release = valorAtual.release_date
-      var nome = valorAtual.title
-      var linkimagem = valorAtual.img
-      var resumo = valorAtual.overview
-
-      console.log(resumo)
+      console.log(this.FilmesPorNomes)
     })
   }
   
   obterFilmeAtor(ator: string){
     this.mvdbservice.obterFilmeAtor(ator).subscribe(res =>{
+      this.FilmeAtor = res.results.known_for
+      console.log(this.FilmeAtor)
+    })
+  }
+
+  obterAtor(nomeAtor: string, pagenum: number){
+    this.mvdbservice.obterAtor(nomeAtor, pagenum).subscribe(res =>{
       this.FilmeAtor = res.results
       console.log(this.FilmeAtor)
     })
   }
 
+  obterSerie(nomeSerie: string, pagenum: number){
+    this.mvdbservice.obterSerie(nomeSerie, pagenum).subscribe(res => {
+      this.SeriesPorNomes = res.results
+      console.log(this.SeriesPorNomes) 
+    })
+  } */
   
   ngOnInit(): void {
     

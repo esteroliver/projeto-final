@@ -48,11 +48,23 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item"
-            [routerLink]=""
-            [queryParams]="">Ação</a>
-            <a class="dropdown-item">Terror</a>
-            <a class="dropdown-item">Comédia</a>
-            <a class="dropdown-item">Romance</a>
+            [routerLink]="['filme']"
+            [queryParams]="{temGenero: true, idGenero: '28', pesquisa: 'Ação', tipoPesquisa: 'filme'}">Ação</a>
+            <a class="dropdown-item"
+            [routerLink]="['filme']"
+            [queryParams]="{temGenero: true, idGenero: '27', pesquisa: 'Terror', tipoPesquisa: 'filme'}">Terror</a>
+            <!--
+              ID Terror: 27
+              ID Comedia: 35
+              ID Romance: 10749
+              ID Acao: 28
+            -->
+            <a class="dropdown-item"
+            [routerLink]="['filme']"
+            [queryParams]="{temGenero: true, idGenero: '35', pesquisa: 'Comédia', tipoPesquisa: 'filme'}">Comédia</a>
+            <a class="dropdown-item"
+            [routerLink]="['filme']"
+            [queryParams]="{temGenero: true, idGenero: '10749', pesquisa: 'Romance', tipoPesquisa: 'filme'}">Romance</a>
           </div>
         </li>
       </ul>
