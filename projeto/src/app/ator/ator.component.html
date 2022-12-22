@@ -1,4 +1,8 @@
-<div *ngFor="let ator of listaAtores">
-    <app-cartaz-ator [ator]="ator"></app-cartaz-ator>
+<div class="container mt-4 align-center">
+    <div class="row row-cols-3">
+        <div *ngFor="let ator of listaAtores">
+            <app-cartaz-ator [ator]="ator"></app-cartaz-ator>
+        </div>
+    </div>
 </div>
 

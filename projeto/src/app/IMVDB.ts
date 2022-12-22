@@ -29,4 +29,13 @@ export class obterFilmeAtor{
     results: object =[]
     
 }
+export class obterFilmeID{
+}
 
+export class obterSerieID{
+
+}
+
+export class obterAtorID{
+
+}

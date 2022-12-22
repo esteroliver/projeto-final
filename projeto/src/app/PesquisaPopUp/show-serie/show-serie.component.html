@@ -1,0 +1,18 @@
+<div class="mt-4 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img [src]="serie['poster_path']" class="img-fluid rounded cartazes" />
+      </div>
+      <div class="col text-light">
+        <div>
+          <p class="titulo fonte-padrao">{{ serie["name"] }}</p>
+          <p class="data">{{ serie["first_air_date"] }}</p>
+        </div>
+        <div>
+          <p class="fonte-padrao">{{ serie["overview"] }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_PATH, api_key } from 'src/environments/environment';
-import { obterNome, ObterGenero, obterGeneroId, obterFilmeAtor, ObterAtor, obterSerie } from './IMVDB';
+import { obterNome, ObterGenero, obterGeneroId, obterFilmeAtor, ObterAtor, obterSerie, obterFilmeID, obterSerieID, obterAtorID } from './IMVDB';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +37,16 @@ export class MVDBService {
     return this.httpclient.get<obterSerie[]>(`${API_PATH}search/tv?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR&page=1&query=${titulo}&page=${pageNum}&include_adult=false`)
   }
 
+  obterFilmePorID(ID: Number):Observable<any>{
+    return this.httpclient.get<obterFilmeID>(`${API_PATH}movie/${ID}?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR`)
+  }
+
+  obterSeriePorID(ID: number):Observable<any>{
+    return this.httpclient.get<obterSerieID>(`${API_PATH}tv/${ID}?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR`)
+  }
+
+  obterAtorPorID(ID: number):Observable<any>{
+    return this.httpclient.get<obterAtorID>(`${API_PATH}person/${ID}?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR`)
+  }
 }
+

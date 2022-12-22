@@ -1,18 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Lato&family=Prata&family=Raleway:wght@300&family=Secular+One&family=Source+Serif+4:opsz@8..60&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Lato&family=Prata&family=Raleway:wght@300&family=Secular+One&family=Source+Serif+4:opsz@8..60&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Lato&family=Prata&family=Raleway:wght@300&family=Secular+One&family=Source+Serif+4:opsz@8..60&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Lato&family=Prata&family=Raleway:wght@300&family=Secular+One&family=Source+Serif+4:opsz@8..60&display=swap");
 
-
-$fonte-destaque: 'Abril Fatface', cursive;
-$fonte-padrao: 'Lato', sans-serif;
+$fonte-destaque: "Abril Fatface", cursive;
+$fonte-padrao: "Lato", sans-serif;
 $cinza-escuro: #222222;
 $turquesa: #319796;
-$branco: #F3EFE0;
+$branco: #f3efe0;
+$titulo: 20px;
+$data: 15px;
 
 $info: $turquesa;
 $light: $branco;
 $dark: $cinza-escuro;
-
-.navbar-brand{
-    font-family: $fonte-destaque;
+html, body {
+  min-height: 100%;
+  background-color: $cinza-escuro;
 }
-@import '~bootstrap/scss/bootstrap.scss';
+.navbar-brand {
+  font-family: $fonte-destaque;
+}
+.h1 {
+  font-family: $fonte-destaque;
+}
+.h2 {
+  font-family: $fonte-padrao;
+}
+.fonte-destaque {
+  font-family: $fonte-destaque;
+}
+.fonte-padrao {
+  font-family: $fonte-padrao;
+}
+.titulo {
+  font-size: $titulo;
+}
+.data {
+  font-size: $data;
+}
+.cartazes {
+  width: 70%;
+  height: auto;
+}
+@import "~bootstrap/scss/bootstrap.scss";

@@ -48,15 +48,19 @@ export class FilmesComponent implements OnInit {
   pesquisar() {
     if (this.tipoPesquisa == 'filme') {
       this.bdFilme.ObterfilmesPorNome(this.pesquisa, this.numPag).subscribe(value => {
+        this.redirecionarPagNaoEncontrada(value.results, this.pesquisa)
         this.listaFilmes = value.results
-        console.log(this.listaFilmes)
       })
       
     }
     else if (this.tipoPesquisa == 'serie'){
       this.bdFilme.obterSerie(this.pesquisa, this.numPag).subscribe(value =>{
+        this.redirecionarPagNaoEncontrada(value.results, this.tipoPesquisa)
         this.listaFilmes = value.results
       }) 
+    }
+    else{
+      
     }
   }
 
@@ -89,7 +93,7 @@ export class FilmesComponent implements OnInit {
       {
         relativeTo: this.route,
         queryParams: queryParameters, 
-        queryParamsHandling: 'merge', // remove to replace all query params by provided
+        queryParamsHandling: 'merge',
       });
   }
 
@@ -104,5 +108,10 @@ export class FilmesComponent implements OnInit {
 
   get numPag() {
     return this._numPag;
+  }
+  redirecionarPagNaoEncontrada(lista: any[], pesquisa: string) {
+    if (lista.length == 0) { 
+      this.router.navigate(['pagenotfound'], {queryParams: {pesquisa: pesquisa }})
+    }
   }
 }

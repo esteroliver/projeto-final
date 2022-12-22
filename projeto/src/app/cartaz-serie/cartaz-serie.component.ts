@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { api_img } from 'src/environments/environment';
 
@@ -9,11 +10,13 @@ import { api_img } from 'src/environments/environment';
 export class CartazSerieComponent implements OnInit {
   @Input() serie: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.serie)
     this.serie['poster_path'] = `${api_img}${this.serie['poster_path']}`
   }
 
+  redirecionar() {
+    this.router.navigate(['verSerie'], {queryParams: {id: this.serie['id']}})
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { api_img } from 'src/environments/environment';
 
 @Component({
@@ -8,12 +9,15 @@ import { api_img } from 'src/environments/environment';
 })
 export class CartazComponent implements OnInit {
   @Input() filme: any;
+  constructor(private router: Router) {
 
-  constructor() { }
-
-  ngOnInit(): void {
-    console.log(this.filme)
-    this.filme['poster_path'] = `${api_img}${this.filme['poster_path']}`
   }
 
+  ngOnInit(): void {
+    this.filme['poster_path'] = `${api_img}${this.filme['poster_path']}`;
+  }
+
+  redirecionar() {
+    this.router.navigate(['verFilme'], {queryParams: {id: this.filme['id']}})
+  }
 }

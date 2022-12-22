@@ -16,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { AtorComponent } from './ator/ator.component';
 import { CartazSerieComponent } from './cartaz-serie/cartaz-serie.component';
 import { CartazAtorComponent } from './cartaz-ator/cartaz-ator.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { ShowFilmeComponent } from './PesquisaPopUp/show-filme/show-filme.component';
+import { ShowSerieComponent } from './PesquisaPopUp/show-serie/show-serie.component';
+import { ShowAtorComponent } from './PesquisaPopUp/show-ator/show-ator.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { CartazAtorComponent } from './cartaz-ator/cartaz-ator.component';
     CartazComponent,
     AtorComponent,
     CartazSerieComponent,
-    CartazAtorComponent
+    CartazAtorComponent,
+    PaginaNaoEncontradaComponent,
+    ShowFilmeComponent,
+    ShowSerieComponent,
+    ShowAtorComponent
   ],
   imports: [
     BrowserModule,

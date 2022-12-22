@@ -1,14 +1,23 @@
 <div [ngSwitch]="tipoPesquisa">
 <ng-container  *ngSwitchCase="'filme'">
-<div *ngFor="let filme of listaFilmes">
-    <app-cartaz [filme]="filme"></app-cartaz>
+<div class="container mt-4 align-center">
+    <div class="row row-cols-3">
+        <div *ngFor="let filme of listaFilmes">
+                <app-cartaz [filme]="filme"></app-cartaz>
+        </div>
+    </div>
 </div>
 </ng-container>
 <ng-container *ngSwitchCase="'serie'">
-<div *ngFor="let serie of listaFilmes">
-    <app-cartaz-serie [serie]="serie"></app-cartaz-serie>
-
+<div  class="container mt-4 align-center">
+    <div class="row row-cols-3">
+        <div *ngFor="let serie of listaFilmes">
+            <app-cartaz-serie [serie]="serie"></app-cartaz-serie>
+        </div>
+    </div>
 </div>
 </ng-container>
-<button (click)="descerPag()" >Descer Pag</button>
-<button (click)="subirPag()" >Subir Pag</button>
+<div class="container-fluid d-flex justify-content-between">
+<button (click)="descerPag()" class="btn btn-success" >Descer Pag</button>
+<button (click)="subirPag()" class="btn btn-success">Subir Pag</button>
+</div>

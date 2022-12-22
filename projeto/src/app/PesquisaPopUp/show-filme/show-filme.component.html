@@ -1,0 +1,19 @@
+<div class="mt-4 mb-4">
+  <div class="container">
+      <div class="row">
+          <div class="col">
+            <img [src]="filme['poster_path']" class="img-fluid rounded cartazes" />
+          </div>
+          <div class="col text-light">
+              <div>
+                <p class="titulo fonte-padrao">{{ filme["title"] }}</p>
+                <p class="data">{{ filme["release_date"] }}</p>
+              </div>
+              <div>
+                <p class="fonte-padrao">{{ filme["overview"] }}</p>
+                <p class="fonte-padrao">{{ filme["runtime"] }} minutos.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
