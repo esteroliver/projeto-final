@@ -2,6 +2,7 @@ import { MVDBService } from './../mvdb.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { query } from '@angular/animations';
+import { async, asyncScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-filmes',
@@ -15,6 +16,7 @@ export class FilmesComponent implements OnInit {
   temGenero: boolean = false;
   idGenero: string = '';
   private _numPag: number = 1
+  numPagTotal : number = 1
 
   listaFilmes: [] = []
   constructor(private router: Router, private route: ActivatedRoute, private bdFilme: MVDBService, private changeDetection: ChangeDetectorRef) { }
@@ -22,13 +24,13 @@ export class FilmesComponent implements OnInit {
   ngOnInit(): void {
     this.changeDetection.detectChanges();
     this.route.queryParams.subscribe((value) => {
+      
       if (value["temGenero"] == undefined) {
         this.temGenero = false;
         this.tipoPesquisa = value["tipoPesquisa"];
         this.pesquisa = value ["pesquisa"];
         this.titulo = `Pesquisa de ${this.pesquisa}`
         this.pesquisar();
-        
       }
       else {
         this.temGenero = true;
@@ -37,11 +39,7 @@ export class FilmesComponent implements OnInit {
         this.pegarListaGenero();
         this.tipoPesquisa = value["tipoPesquisa"]
       }
-      if (value["numPag"]== undefined || value["numPag"]<1) {
-        this.numPag = 1;
-      } else {
-        this.numPag = value["numPag"]
-      }
+      this.checarPag(value["numPag"])
     })
   }
 
@@ -49,6 +47,7 @@ export class FilmesComponent implements OnInit {
     if (this.tipoPesquisa == 'filme') {
       this.bdFilme.ObterfilmesPorNome(this.pesquisa, this.numPag).subscribe(value => {
         this.redirecionarPagNaoEncontrada(value.results, this.pesquisa)
+        this.numPagTotal = value.total_pages
         this.listaFilmes = value.results
       })
       
@@ -56,27 +55,21 @@ export class FilmesComponent implements OnInit {
     else if (this.tipoPesquisa == 'serie'){
       this.bdFilme.obterSerie(this.pesquisa, this.numPag).subscribe(value =>{
         this.redirecionarPagNaoEncontrada(value.results, this.tipoPesquisa)
+        this.numPagTotal = value.total_pages
         this.listaFilmes = value.results
       }) 
-    }
-    else{
-      
     }
   }
 
   pegarListaGenero() {
     this.bdFilme.obterFilmePorGenero(this.idGenero, this.numPag).subscribe(value => {
+      this.numPagTotal = value.total_pages
       this.listaFilmes = value.results
-      console.log(this.listaFilmes)
     })
   }
 
-  atributos() {
-    console.log(this.pesquisa, this.tipoPesquisa, this.titulo, this.temGenero, this.idGenero, this.numPag)
-  }
-
   subirPag() {
-    let queryParameters: Params = { numPag: (this.numPag++)}
+    let queryParameters: Params = { numPag: (++this.numPag)}
     this.router.navigate(
       [], 
       {
@@ -87,7 +80,7 @@ export class FilmesComponent implements OnInit {
   }
 
   descerPag() {
-    let queryParameters: Params = { numPag: (this.numPag-1)}
+    let queryParameters: Params = { numPag: (--this.numPag)}
     this.router.navigate(
       [], 
       {
@@ -101,6 +94,9 @@ export class FilmesComponent implements OnInit {
     if (n<1) {
       this._numPag = 1
     }
+    else if (n > this.numPagTotal) {
+      this._numPag = this.numPagTotal
+    }
     else {
       this._numPag = n;
     }
@@ -112,6 +108,14 @@ export class FilmesComponent implements OnInit {
   redirecionarPagNaoEncontrada(lista: any[], pesquisa: string) {
     if (lista.length == 0) { 
       this.router.navigate(['pagenotfound'], {queryParams: {pesquisa: pesquisa }})
+    }
+  }
+
+  checarPag(num: number) {
+    if (num == undefined || num<1) {
+      this.numPag = 1;
+    } else {
+      this.numPag = num
     }
   }
 }

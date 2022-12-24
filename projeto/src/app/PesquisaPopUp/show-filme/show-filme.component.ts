@@ -17,7 +17,6 @@ export class ShowFilmeComponent implements OnInit {
     this.route.queryParams.subscribe((value) => {
       this.pesquisar(value['id'])
     })
-    
     this.changeDetection.detectChanges();
   }
 

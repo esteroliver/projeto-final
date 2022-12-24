@@ -17,7 +17,6 @@ export class ShowSerieComponent implements OnInit {
     this.route.queryParams.subscribe((value) => {
       this.pesquisar(value["id"])
     })
-    
     this.changeDetection.detectChanges();
   }
 

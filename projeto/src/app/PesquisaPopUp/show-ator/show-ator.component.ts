@@ -10,7 +10,7 @@ import { api_img } from 'src/environments/environment';
 export class ShowAtorComponent implements OnInit {
   Ator: any;
 
-  constructor(private route: ActivatedRoute, private bdAtor: MVDBService, private changeDetection: ChangeDetectorRef ) { }
+  constructor(private route: ActivatedRoute, private bdAtor: MVDBService ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((value) =>{

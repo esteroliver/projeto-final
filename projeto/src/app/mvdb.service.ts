@@ -13,7 +13,7 @@ export class MVDBService {
 
 
   obterGenero(){
-    return this.httpclient.get<obterNome[]>(`${API_PATH}genre/movie/list?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR`).toPromise();
+    return this.httpclient.get<obterNome[]>(`${API_PATH}genre/movie/list?api_key=${api_key}&language=pt-BR`).toPromise();
   }
   
   obterFilmePorGenero(ID: string, pageNum: number):Observable<any>{
@@ -30,23 +30,27 @@ export class MVDBService {
   }
 
   obterAtor(NOMEATOR: string, pageNum: number): Observable<any>{
-    return this.httpclient.get<ObterAtor>(`${API_PATH}search/person?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR&query=${NOMEATOR}&page=${pageNum}&include_adult=false`)
+    return this.httpclient.get<ObterAtor>(`${API_PATH}search/person?api_key=${api_key}&language=pt-BR&query=${NOMEATOR}&page=${pageNum}&include_adult=false`)
   }
 
   obterSerie(titulo: string, pageNum: number): Observable<any>{
-    return this.httpclient.get<obterSerie[]>(`${API_PATH}search/tv?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR&page=1&query=${titulo}&page=${pageNum}&include_adult=false`)
+    return this.httpclient.get<obterSerie[]>(`${API_PATH}search/tv?api_key=${api_key}&language=pt-BR&page=1&query=${titulo}&page=${pageNum}&include_adult=false`)
   }
 
   obterFilmePorID(ID: Number):Observable<any>{
-    return this.httpclient.get<obterFilmeID>(`${API_PATH}movie/${ID}?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR`)
+    return this.httpclient.get<obterFilmeID>(`${API_PATH}movie/${ID}?api_key=${api_key}&language=pt-BR`)
   }
 
   obterSeriePorID(ID: number):Observable<any>{
-    return this.httpclient.get<obterSerieID>(`${API_PATH}tv/${ID}?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR`)
+    return this.httpclient.get<obterSerieID>(`${API_PATH}tv/${ID}?api_key=${api_key}&language=pt-BR`)
   }
 
   obterAtorPorID(ID: number):Observable<any>{
-    return this.httpclient.get<obterAtorID>(`${API_PATH}person/${ID}?api_key=9d9d39faf97f2a006cc70633e3b0fbb9&language=pt-BR`)
+    return this.httpclient.get<obterAtorID>(`${API_PATH}person/${ID}?api_key=${api_key}&language=pt-BR`)
+  }
+
+  descobrirFilmesPopulares(): Observable<any>{
+    return this.httpclient.get<any>(`${API_PATH}discover/movie?api_key=${api_key}&language=pt-BR&region=BR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
   }
 }
 

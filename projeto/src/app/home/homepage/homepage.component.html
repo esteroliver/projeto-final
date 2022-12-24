@@ -1,4 +1,11 @@
 <main>
     <h1 class="h1 text-center text-light">CineTrip</h1>
-    <h2 class="titulo fonte-padrao text-center text-light">Projeto de desenvolvimento dos alunos de informática do IFRN.</h2>
+    <h2 class="titulo fonte-padrao text-center text-light">O lugar ideal para descobrir filmes, séries e atores!</h2>
+    <div class="container mt-4 align-center">
+        <div class="row row-cols-3">
+            <div *ngFor="let filme of filmesPopulares">
+                    <app-cartaz [filme]="filme"></app-cartaz>
+            </div>
+        </div>
+    </div>
 </main>

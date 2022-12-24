@@ -1,6 +1,5 @@
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeModule } from './home/home.module';
 import { MVDBService } from './mvdb.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,12 +32,13 @@ import { ShowAtorComponent } from './PesquisaPopUp/show-ator/show-ator.component
     PaginaNaoEncontradaComponent,
     ShowFilmeComponent,
     ShowSerieComponent,
-    ShowAtorComponent
+    ShowAtorComponent,
+    HomepageComponent,
+    SobreComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModule,
     HttpClientModule,
     RouterModule,
     FormsModule

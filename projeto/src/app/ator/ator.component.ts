@@ -10,7 +10,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class AtorComponent implements OnInit {
   pesquisa: string = '';
   titulo = '';
-  private _numPag: number = 1
+  private _numPag: number = 1;
+  numPagTotal : number = 100000;
 
   listaAtores: [] = []
 
@@ -21,24 +22,20 @@ export class AtorComponent implements OnInit {
     this.route.queryParams.subscribe((value) =>{
       this.pesquisa = value['pesquisa'];
       this.titulo = `Pesquisa de ${this.pesquisa}`
-      if (value["numPag"] == undefined || value["numPag"]<1){
-        this.numPag = 1
-       } else{
-        this.numPag = value["numPag"]
-       }
-       this.pesquisar()
+      this.checarPag(value["numPag"])
+      this.pesquisar()
     })
   }
 
   pesquisar(){
     this.bdAtor.obterAtor(this.pesquisa, this.numPag).subscribe(value =>{
+      this.numPagTotal = value.total_pages
       this.listaAtores = value.results
-      console.log(this.listaAtores)
     })
   }
 
   subirPag() {
-    let queryParameters: Params = { numPag: (this.numPag++)}
+    let queryParameters: Params = { numPag: (++this.numPag)}
     this.router.navigate(
       [], 
       {
@@ -49,7 +46,7 @@ export class AtorComponent implements OnInit {
   }
 
   descerPag() {
-    let queryParameters: Params = { numPag: (this.numPag-1)}
+    let queryParameters: Params = { numPag: (--this.numPag)}
     this.router.navigate(
       [], 
       {
@@ -63,6 +60,9 @@ export class AtorComponent implements OnInit {
     if (n<1) {
       this._numPag = 1
     }
+    else if (n > this.numPagTotal) {
+      this._numPag = this.numPagTotal
+    }
     else {
       this._numPag = n;
     }
@@ -70,5 +70,13 @@ export class AtorComponent implements OnInit {
 
   get numPag() {
     return this._numPag;
+  }
+
+  checarPag(num: number) {
+    if (num == undefined || num<1) {
+      this.numPag = 1;
+    } else {
+      this.numPag = num
+    }
   }
 }
