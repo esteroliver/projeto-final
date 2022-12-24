@@ -52,5 +52,5 @@ export class MVDBService {
   descobrirFilmesPopulares(): Observable<any>{
     return this.httpclient.get<any>(`${API_PATH}discover/movie?api_key=${api_key}&language=pt-BR&region=BR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
   }
+  
 }
-
